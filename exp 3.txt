@@ -1,0 +1,86 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 6
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases ;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| actor              |
+| faculties          |
+| faculty            |
+| mysql              |
+| orders             |
+| performance_schema |
+| persons            |
+| sridhar            |
+| student            |
+| students           |
+| studentss          |
+| stydents           |
+| test               |
++--------------------+
+14 rows in set (0.00 sec)
+
+mysql> use faculties;
+Database changed
+mysql> create table faculties(fac_no int(16), fac_name char(19), gender char(7), dob date, fac_phone int(13));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc faculties;
++-----------+----------+------+-----+---------+-------+
+| Field     | Type     | Null | Key | Default | Extra |
++-----------+----------+------+-----+---------+-------+
+| fac_no    | int(16)  | YES  |     | NULL    |       |
+| fac_name  | char(19) | YES  |     | NULL    |       |
+| gender    | char(7)  | YES  |     | NULL    |       |
+| dob       | date     | YES  |     | NULL    |       |
+| fac_phone | int(13)  | YES  |     | NULL    |       |
++-----------+----------+------+-----+---------+-------+
+5 rows in set (0.03 sec)
+
+mysql> insert into faculties value('12334' , 'jay' , 'm' , '07-09-1987' , '9876543210');
+ERROR 1292 (22007): Incorrect date value: '07-09-1987' for column 'dob' at row 1
+mysql> insert into faculties value('12334' , 'jay' , 'm' , 07-09-1987 , 9876543210);
+ERROR 1292 (22007): Incorrect date value: '-1989' for column 'dob' at row 1
+mysql> insert into faculties value('12334' , 'jay' , 'm' , 07-09-87 , 9876543210);
+ERROR 1292 (22007): Incorrect date value: '-89' for column 'dob' at row 1
+mysql> INSERT INTO faculties VALUES(123,'jay','m',987654321,'2002/08/10'),(132,'Ram','m',78965421,'2001/04/09'),(134,'raju','M',98654327,'2000/04/09');
+ERROR 1292 (22007): Incorrect date value: '987654321' for column 'dob' at row 1
+mysql> INSERT INTO faculties VALUES(123,'jay','m','2002/08/10', 97554325),(132,'Ram','m','2001/04/09', 987654321),(134,'raju','M' , '2000/04/09', 987654321);
+Query OK, 3 rows affected (0.00 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> desc faculties;
++-----------+----------+------+-----+---------+-------+
+| Field     | Type     | Null | Key | Default | Extra |
++-----------+----------+------+-----+---------+-------+
+| fac_no    | int(16)  | YES  |     | NULL    |       |
+| fac_name  | char(19) | YES  |     | NULL    |       |
+| gender    | char(7)  | YES  |     | NULL    |       |
+| dob       | date     | YES  |     | NULL    |       |
+| fac_phone | int(13)  | YES  |     | NULL    |       |
++-----------+----------+------+-----+---------+-------+
+5 rows in set (0.02 sec)
+
+mysql> SELECT*FROM faculties;
++--------+----------+--------+------------+-----------+
+| fac_no | fac_name | gender | dob        | fac_phone |
++--------+----------+--------+------------+-----------+
+|    123 | jay      | m      | 2002-08-10 |  97554325 |
+|    132 | Ram      | m      | 2001-04-09 | 987654321 |
+|    134 | raju     | M      | 2000-04-09 | 987654321 |
++--------+----------+--------+------------+-----------+
+3 rows in set (0.00 sec)
+
+mysql>

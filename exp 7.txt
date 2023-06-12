@@ -1,0 +1,109 @@
+Enter password: *****
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 2
+Server version: 5.5.62 MySQL Community Server (GPL)
+
+Copyright (c) 2000, 2018, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| actor              |
+| faculties          |
+| faculty            |
+| labour             |
+| marks              |
+| mysql              |
+| orders             |
+| performance_schema |
+| persons            |
+| sridhar            |
+| student            |
+| students           |
+| studentss          |
+| stydents           |
+| test               |
++--------------------+
+16 rows in set (0.00 sec)
+
+mysql> use marks;
+Database changed
+mysql> select*from marks;
++------+-----------------+---------+-------+-------+
+| s_no | name_of_student | subject | marks | grade |
++------+-----------------+---------+-------+-------+
+|    1 | jay             | dbms    |    95 | A     |
+|    1 | raj             | mpmc    |    87 | A     |
+|    2 | adhya           | maths   |    78 | B     |
+|    3 | ramya           | phy     |    66 | c     |
++------+-----------------+---------+-------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select*from marks order by subject;
++------+-----------------+---------+-------+-------+
+| s_no | name_of_student | subject | marks | grade |
++------+-----------------+---------+-------+-------+
+|    1 | jay             | dbms    |    95 | A     |
+|    2 | adhya           | maths   |    78 | B     |
+|    1 | raj             | mpmc    |    87 | A     |
+|    3 | ramya           | phy     |    66 | c     |
++------+-----------------+---------+-------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select*from marks order by marks;
++------+-----------------+---------+-------+-------+
+| s_no | name_of_student | subject | marks | grade |
++------+-----------------+---------+-------+-------+
+|    3 | ramya           | phy     |    66 | c     |
+|    2 | adhya           | maths   |    78 | B     |
+|    1 | raj             | mpmc    |    87 | A     |
+|    1 | jay             | dbms    |    95 | A     |
++------+-----------------+---------+-------+-------+
+4 rows in set (0.00 sec)
+
+mysql> select*from marks group  by s_no;
++------+-----------------+---------+-------+-------+
+| s_no | name_of_student | subject | marks | grade |
++------+-----------------+---------+-------+-------+
+|    1 | jay             | dbms    |    95 | A     |
+|    2 | adhya           | maths   |    78 | B     |
+|    3 | ramya           | phy     |    66 | c     |
++------+-----------------+---------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select*from marks group  by grade;
++------+-----------------+---------+-------+-------+
+| s_no | name_of_student | subject | marks | grade |
++------+-----------------+---------+-------+-------+
+|    1 | jay             | dbms    |    95 | A     |
+|    2 | adhya           | maths   |    78 | B     |
+|    3 | ramya           | phy     |    66 | c     |
++------+-----------------+---------+-------+-------+
+3 rows in set (0.00 sec)
+
+mysql> select*from marks group  by marks having marks>80;
++------+-----------------+---------+-------+-------+
+| s_no | name_of_student | subject | marks | grade |
++------+-----------------+---------+-------+-------+
+|    1 | raj             | mpmc    |    87 | A     |
+|    1 | jay             | dbms    |    95 | A     |
++------+-----------------+---------+-------+-------+
+2 rows in set (0.00 sec)
+
+mysql> select*from marks group  by marks having marks>90;
++------+-----------------+---------+-------+-------+
+| s_no | name_of_student | subject | marks | grade |
++------+-----------------+---------+-------+-------+
+|    1 | jay             | dbms    |    95 | A     |
++------+-----------------+---------+-------+-------+
+1 row in set (0.00 sec)
+
+mysql>
